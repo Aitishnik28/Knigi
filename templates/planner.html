@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Планувальник</h1>
+
+    <form action="/add_task" method="POST">
+        <input type="text" name="title" placeholder="Назва задачі" required>
+        <input type="text" name="description" placeholder="Опис" required>
+        <button type="submit">Додати</button>
+    </form>
+
+    <div class="tasks-list">
+        {% for task in tasks %}
+            <div class="task-item">
+                <strong>{{ task[1] }}</strong> — {{ task[2] }}
+                <br>
+                <small>{{ task[3] }}</small>
+                <a href="/delete/{{ task[0] }}">Видалити</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
